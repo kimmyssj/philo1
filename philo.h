@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:23:23 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/06 21:28:32 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/08 01:28:22 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_resource // 공통자원을 위한 공간으로 만들자
 	int					dead_flag;
 	int					count;
 	int					flag;
+	int					odd_or_even;
 	int					*forks;
 	int					*tomb;
 	pthread_mutex_t		mutex;

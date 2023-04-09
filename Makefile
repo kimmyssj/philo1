@@ -1,28 +1,39 @@
-SRC_A = $(wildcard *.c)
-
-OBJ_A = $(SRC_A:.c=.o)
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jeojeon <jeojeon@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/03/14 18:15:42 by jeojeon           #+#    #+#              #
+#    Updated: 2023/04/10 01:06:28 by seungjki         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = philo
-
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
+CFLAGS = -Werror -Wall -Wextra
+SRCS = $(wildcard *.c)
+
+OBJS = $(SRCS:.c=.o)
+RM = rm -f
 
 all : $(NAME)
 
-$(NAME) : $(OBJ_A)
-	$(CC) $(CFLAGS) $(OBJ_A) -o $(NAME)
+$(NAME) : $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-OBJ_A :
-	$(CC) $(CFLAGS) -c $(SRC_A) -o $(OBJ_A)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
-	rm -f *.o
-	
-fclean :
-	rm -f *.o
-	rm -f philo
+	rm -rf $(OBJS)
 
-re : 
+fclean :
+	make clean
+	$(RM) $(NAME)
+
+re :
 	make fclean
 	make all
 

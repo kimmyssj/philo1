@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:44 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/06 21:28:01 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/08 01:31:12 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ int	main(int argc, char *argv[])
 	if (thread == NULL)
 		return (free_all1(&resource.forks, &resource.tomb, NULL));
 	gettimeofday(&resource.time, NULL);
+	if (array[number_of_philosophers] / 2 == 1)
+		resource.odd_or_even = 1;
+	else
+		resource.odd_or_even = 2;
 	if (create_philo(&resource, array, &thread) == 1)
 		return (1);
 	check_tomb(&resource, array, thread);
