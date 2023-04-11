@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:44 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/08 01:31:12 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:56:33 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,27 @@ int	main(int argc, char *argv[])
 		resource.odd_or_even = 2;
 	if (create_philo(&resource, array, &thread) == 1)
 		return (1);
-	check_tomb(&resource, array, thread);
+	int	idx;
+	int	flag;
+	while (1)
+	{
+		idx = 0;
+		flag = 0;
+		while (idx < array[number_of_philosophers])
+		{
+			if (resource.tomb[idx] == 1)
+				flag ++;
+			idx ++;
+		}
+		if (flag == array[number_of_philosophers])
+			break ;
+	}
+	idx = 0;
+	while (idx < array[number_of_philosophers])
+	{
+		pthread_join(thread[idx], NULL);
+		idx ++;
+	}
 	free_all1(&resource.forks, &resource.tomb, &thread);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:23:23 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/08 01:28:22 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/11 04:56:27 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_resource // 공통자원을 위한 공간으로 만들자
 	int					dead_flag;
 	int					count;
 	int					flag;
-	int					odd_or_even;
 	int					*forks;
 	int					*tomb;
 	pthread_mutex_t		mutex;
@@ -53,6 +52,7 @@ typedef struct	s_human
 {
 	t_resource	*res;
 	int			*arr;
+	int			ate_numb;
 	int			name;
 }	t_human;
 
@@ -62,6 +62,5 @@ int		error_message(int flag);
 int		ft_atoi(char *str);
 int		free_all1(int **arr, int **arr1, pthread_t **thread);
 int		*make_fork_and_tomb(int num);
-void	check_tomb(t_resource *res, int *array, pthread_t *threads);
 
 #endif
