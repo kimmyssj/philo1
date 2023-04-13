@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:29:52 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/06 09:36:46 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/14 06:43:21 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_it_number(char *argv)
 	return (0);
 }
 
-int check_args_make_arr(int argc, char *argv[], int *array)
+int	check_args_make_arr(int argc, char *argv[], int *array)
 {
 	int	idx;
 	int	temp;
