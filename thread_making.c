@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/14 06:48:36 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/14 07:44:21 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	if_odd(t_human *hum, struct timeval *last_time)
 
 void	if_even(t_human *hum, struct timeval *last_time)
 {
-	usleep(300);
 	while (hum->name % 2 == 0)
 	{
 		if (eat_sleep_think(hum, last_time) == NULL)

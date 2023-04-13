@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/14 05:56:44 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/14 07:20:17 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_human	*eat(t_human *hum, struct timeval *last_time)
 	if (check_dead_or_ate(hum, last_time, eating) == NULL)
 		return (NULL);
 	gettimeofday(last_time, NULL);
-	usleep_split(hum, *last_time, time_to_eat, 1);
+	usleep_split(hum, *last_time, time_to_eat, 0);
 	pthread_mutex_lock(&hum->res->mutex);
 	if (hum->name == hum->arr[number_of_philosophers])
 	{
