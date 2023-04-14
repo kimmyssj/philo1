@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/14 06:42:45 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/15 02:01:51 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_human	*dead(t_human *hum, struct timeval *last_time)
 
 t_human	*check_dead_or_ate(t_human *hum, struct timeval *last_time, int flag1)
 {
-	static int	flag;
+	static int		flag;
 
 	pthread_mutex_lock(&hum->res->mutex);
 	if ((hum->arr[must_eat] != -1 && hum->res->count / \

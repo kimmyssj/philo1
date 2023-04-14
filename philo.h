@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:23:23 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/14 06:46:05 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/15 02:01:57 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ typedef struct s_resource // 공통자원을 위한 공간으로 만들자
 
 typedef struct s_human
 {
-	t_resource	*res;
-	int			*arr;
-	int			ate_numb;
-	int			name;
+	t_resource		*res;
+	int				*arr;
+	int				ate_numb;
+	int				name;
+	struct timeval	time;
 }	t_human;
 
 int		check_args_make_arr(int argc, char *argv[], int *array);

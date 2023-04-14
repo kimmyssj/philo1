@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/14 07:36:00 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/15 01:16:57 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 t_human	*think_eat_sleep(t_human *hum, struct timeval *last_time)
 {
+	gettimeofday(&hum->time, NULL);
 	if (think(hum, last_time) == NULL)
 		return (NULL);
+	gettimeofday(&hum->time, NULL);
 	if (eat(hum, last_time) == NULL)
 	{
 		pthread_mutex_unlock(&hum->res->mutex);
 		return (NULL);
 	}
+	gettimeofday(&hum->time, NULL);
 	if (ssleep(hum, last_time) == NULL)
 		return (NULL);
 	return (hum);
@@ -28,13 +31,16 @@ t_human	*think_eat_sleep(t_human *hum, struct timeval *last_time)
 
 t_human	*eat_sleep_think(t_human *hum, struct timeval *last_time)
 {
+	gettimeofday(&hum->time, NULL);
 	if (eat(hum, last_time) == NULL)
 	{
 		pthread_mutex_unlock(&hum->res->mutex);
 		return (NULL);
 	}
+	gettimeofday(&hum->time, NULL);
 	if (ssleep(hum, last_time) == NULL)
 		return (NULL);
+	gettimeofday(&hum->time, NULL);
 	if (think(hum, last_time) == NULL)
 		return (NULL);
 	return (hum);
@@ -42,10 +48,13 @@ t_human	*eat_sleep_think(t_human *hum, struct timeval *last_time)
 
 t_human	*sleep_think_eat(t_human *hum, struct timeval *last_time)
 {
+	gettimeofday(&hum->time, NULL);
 	if (ssleep(hum, last_time) == NULL)
 		return (NULL);
+	gettimeofday(&hum->time, NULL);
 	if (think(hum, last_time) == NULL)
 		return (NULL);
+	gettimeofday(&hum->time, NULL);
 	if (eat(hum, last_time) == NULL)
 	{
 		pthread_mutex_unlock(&hum->res->mutex);

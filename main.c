@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:44 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/14 06:48:48 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/15 00:19:48 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,12 @@ void	monitoring_thread(t_resource *resource, int *array, pthread_t *thread)
 {
 	int	idx;
 	int	flag;
-	int	rest_time;
 
-	rest_time = array[number_of_philosophers] * 2000000;
 	while (1)
 	{
 		idx = 0;
 		flag = 0;
-		usleep(rest_time);
+		usleep(300);
 		pthread_mutex_lock(&resource->mutex);
 		while (idx < array[number_of_philosophers])
 		{
