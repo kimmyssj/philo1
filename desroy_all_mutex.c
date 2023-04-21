@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   desroy_all_mutex.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/21 22:50:30 by seungjki         ###   ########.fr       */
+/*   Created: 2023/04/22 00:00:25 by seungjki          #+#    #+#             */
+/*   Updated: 2023/04/22 00:04:14 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_human	*ssleep(t_human *hum, struct timeval *last_time)
+void	destroy_all_mutex(t_resource *res, int *arr)
 {
-	if (check_dead_or_ate(hum, last_time, sleeping) == NULL)
-		return (NULL);
-	usleep_split(hum, *last_time, time_to_sleep, 0);
-	return (hum);
+	int	idx;
+
+	idx = 0;
+	pthread_mutex_destroy(&res->mutex);
+	while (idx < arr[number_of_philosophers])
+	{
+		pthread_mutex_destroy(res->mfork + idx);
+		idx ++;
+	}
+	free(res->mfork);
 }

@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/15 01:53:28 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/21 23:53:15 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,16 @@ void	if_even(t_human *hum, struct timeval *last_time)
 
 void	grab_fork_and_die(t_human *hum)
 {
-	pthread_mutex_lock(&hum->res->mutex);
+	pthread_mutex_lock(hum->res->mfork);
 	hum->res->forks[0] = 1;
-	printf("%d %d has taken a fork\n", timestamp(hum->res->time), hum->name);
-	pthread_mutex_unlock(&hum->res->mutex);
+	printf("%d %d has taken a fork\n", \
+		timestamp(hum, hum->res->time), hum->name);
+	pthread_mutex_unlock(hum->res->mfork);
 	usleep_split(hum, hum->res->time, time_to_die, 0);
-	pthread_mutex_lock(&hum->res->mutex);
-	printf("%d %d died\n", timestamp(hum->res->time), hum->name);
+	pthread_mutex_lock(hum->res->mfork);
+	printf("%d %d died\n", timestamp(hum, hum->res->time), hum->name);
 	hum->res->tomb[0] = 1;
-	pthread_mutex_unlock(&hum->res->mutex);
+	pthread_mutex_unlock(hum->res->mfork);
 }
 
 void	*internal_f(void *arg)
@@ -99,6 +100,9 @@ t_human	*create_philo(t_resource *res, int *arr, pthread_t **thread)
 		return (NULL);
 	}
 	pthread_mutex_init(&res->mutex, NULL);
+	res->mfork = fork_mutex_maker(arr[number_of_philosophers]);
+	if (res->mfork == NULL)
+		return (if_failed(&res, &hum));
 	idx = 0;
 	while (idx < arr[number_of_philosophers])
 	{

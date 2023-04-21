@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:44 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/15 00:19:48 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/22 00:06:38 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ int	main(int argc, char *argv[])
 	if (hum == NULL)
 		return (free_all1(NULL, NULL, &thread));
 	monitoring_thread(&resource, array, thread);
-	pthread_mutex_destroy(&resource.mutex);
 	free_all1(&resource.forks, &resource.tomb, &thread);
+	destroy_all_mutex(&resource, array);
 	free(hum);
 	return (0);
 }

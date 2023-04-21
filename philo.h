@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:23:23 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/15 02:01:57 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/22 00:03:55 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_resource // 공통자원을 위한 공간으로 만들자
 	int					*forks;
 	int					*tomb;
 	pthread_mutex_t		mutex;
+	pthread_mutex_t		*mfork;
 }	t_resource;
 
 typedef struct s_human
@@ -60,23 +61,26 @@ typedef struct s_human
 	struct timeval	time;
 }	t_human;
 
-int		check_args_make_arr(int argc, char *argv[], int *array);
-int		error_message(int flag);
-int		ft_atoi(char *str);
-int		free_all1(int **arr, int **arr1, pthread_t **thread);
-int		timestamp(struct timeval time);
-int		*make_fork_and_tomb(int num);
-void	usleep_split1(int time);
-void	usleep_split(t_human *hum, struct timeval time, int flag, int flag1);
-void	print_in_mutex(t_human *hum, int flag);
-t_human	*eat(t_human *hum, struct timeval *last_time);
-t_human	*ssleep(t_human *hum, struct timeval *last_time);
-t_human	*think(t_human *hum, struct timeval *last_time);
-t_human	*create_philo(t_resource *res, int *arr, pthread_t **thread);
-t_human	*dead(t_human *hum, struct timeval *last_time);
-t_human	*check_dead_or_ate(t_human *hum, struct timeval *last_time, int flag1);
-t_human	*think_eat_sleep(t_human *hum, struct timeval *last_time);
-t_human	*sleep_think_eat(t_human *hum, struct timeval *last_time);
-t_human	*eat_sleep_think(t_human *hum, struct timeval *last_time);
+int				check_args_make_arr(int argc, char *argv[], int *array);
+int				error_message(int flag);
+int				ft_atoi(char *str);
+int				free_all1(int **arr, int **arr1, pthread_t **thread);
+int				timestamp(t_human *hum, struct timeval time);
+int				*make_fork_and_tomb(int num);
+void			usleep_split1(int time);
+void			usleep_split(t_human *h, struct timeval t, int f, int f1);
+void			print_in_mutex(t_human *hum, int flag);
+void			destroy_all_mutex(t_resource *res, int *arr);
+t_human			*eat(t_human *hum, struct timeval *last_time);
+t_human			*ssleep(t_human *hum, struct timeval *last_time);
+t_human			*think(t_human *hum, struct timeval *last_time);
+t_human			*create_philo(t_resource *res, int *arr, pthread_t **thread);
+t_human			*dead(t_human *hum, struct timeval *last_time);
+t_human			*check_dead_or_ate(t_human *h, struct timeval *l, int g);
+t_human			*think_eat_sleep(t_human *hum, struct timeval *last_time);
+t_human			*sleep_think_eat(t_human *hum, struct timeval *last_time);
+t_human			*eat_sleep_think(t_human *hum, struct timeval *last_time);
+t_human			*if_failed(t_resource **res, t_human **hum);
+pthread_mutex_t	*fork_mutex_maker(int hum_num);
 
 #endif
