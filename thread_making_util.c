@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/21 23:52:39 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/23 21:25:22 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,12 @@ int	timestamp(t_human *hum, struct timeval time)
 {
 	struct timeval	time1;
 
+	(void)hum;
 	gettimeofday(&time1, NULL);
-	if (hum->arr[number_of_philosophers] > 5)
-	{
 		return (((time1.tv_sec - time.tv_sec) * 1000 + \
 			(time1.tv_usec - time.tv_usec) / 1000 + \
 			time1.tv_sec * 1000 - time.tv_sec * 1000 + \
 			time1.tv_usec / 1000 - time.tv_usec / 1000) / 2);
-	}
-	else
-		return (time1.tv_sec * 1000 - time.tv_sec * 1000 + \
-				time1.tv_usec / 1000 - time.tv_usec / 1000);
 }
 
 void	usleep_split(t_human *hum, struct timeval time, int flag, int flag1)

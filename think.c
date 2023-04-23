@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/21 21:32:07 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/23 20:40:05 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ t_human	*think(t_human *hum, struct timeval *last_time)
 	int	flag;
 
 	flag = 0;
+	usleep(300);
 	if (check_dead_or_ate(hum, last_time, thinking) == NULL)
 		return (NULL);
-	usleep(300);
 	while (flag == 0)
 	{
 		flag = is_fork_empty(hum, flag);
