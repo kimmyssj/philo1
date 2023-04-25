@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:44 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/22 00:06:38 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/26 07:18:49 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	monitoring_thread(t_resource *resource, int *array, pthread_t *thread)
 void	initialize(t_resource *resource)
 {
 	resource->dead_flag = 0;
-	resource->start_line = 0;
 	resource->count = 0;
 	resource->flag = 0;
 }
