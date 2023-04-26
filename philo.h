@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:23:23 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/26 08:00:11 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/26 08:55:09 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,33 @@
 
 enum
 {
-	eating,
-	sleeping,
-	thinking,
-	grabfork,
-	no_print
+	e_eating,
+	e_sleeping,
+	e_thinking,
+	e_grabfork,
+	e_no_print
 };
 
 enum
 {
-	fail,
-	success
+	e_fail,
+	e_success
 };
 
 enum
 {
-	philo = 0,
-	number_of_philosophers = 1,
-	time_to_die = 2,
-	time_to_eat = 3,
-	time_to_sleep = 4,
-	must_eat = 5
+	e_philo = 0,
+	e_nbr_of_philosophers = 1,
+	e_time_to_die = 2,
+	e_time_to_eat = 3,
+	e_time_to_sleep = 4,
+	e_must_eat = 5
 };
 
 enum
 {
-	max,
-	novice
+	e_max,
+	e_novice
 };
 
 typedef struct s_resource

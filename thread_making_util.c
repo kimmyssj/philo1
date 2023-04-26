@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/26 08:08:38 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/26 09:17:02 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	usleep_split(t_human *hum, struct timeval time, int flag, int flag1)
 {
 	int	resttime;
 
-	if (hum->arr[number_of_philosophers] > 5)
-		resttime = 6 * hum->arr[number_of_philosophers];
+	if (hum->arr[e_nbr_of_philosophers] > 5)
+		resttime = 6 * hum->arr[e_nbr_of_philosophers];
 	else
 		resttime = 30;
 	if (flag1 == 0)
@@ -45,14 +45,14 @@ void	usleep_split(t_human *hum, struct timeval time, int flag, int flag1)
 
 void	print_in_mutex(t_human *hum, int flag)
 {
-	if (flag == grabfork)
+	if (flag == e_grabfork)
 		printf("%d %d has taken a fork\n", \
 		timestamp(hum, hum->res->time), hum->name);
-	else if (flag == eating)
+	else if (flag == e_eating)
 		printf("%d %d is eating\n", timestamp(hum, hum->res->time), hum->name);
-	else if (flag == thinking)
+	else if (flag == e_thinking)
 		printf("%d %d is thinking\n", timestamp(hum, hum->res->time), hum->name);
-	else if (flag == sleeping)
+	else if (flag == e_sleeping)
 		printf("%d %d is sleeping\n", timestamp(hum, hum->res->time), hum->name);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/26 08:07:07 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/26 09:18:00 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	grab_fork_novice(t_human *hum, struct timeval *last_time)
 		hum->res->forks[hum->name] = 1;
 		pthread_mutex_unlock(hum->res->mfork + hum->name);
 		hum->flag ++;
-		if (check_dead_or_ate(hum, last_time, grabfork) == NULL)
-			return (fail);
+		if (check_dead_or_ate(hum, last_time, e_grabfork) == NULL)
+			return (e_fail);
 	}
 	else
 		pthread_mutex_unlock(hum->res->mfork + hum->name);
@@ -32,12 +32,12 @@ int	grab_fork_novice(t_human *hum, struct timeval *last_time)
 		hum->res->forks[hum->name - 1] = 1;
 		pthread_mutex_unlock(hum->res->mfork + hum->name - 1);
 		hum->flag ++;
-		if (check_dead_or_ate(hum, last_time, grabfork) == NULL)
-			return (fail);
+		if (check_dead_or_ate(hum, last_time, e_grabfork) == NULL)
+			return (e_fail);
 	}
 	else
 		pthread_mutex_unlock(hum->res->mfork + hum->name - 1);
-	return (success);
+	return (e_success);
 }
 
 int	grab_fork_max(t_human *hum, struct timeval *last_time)
@@ -49,8 +49,8 @@ int	grab_fork_max(t_human *hum, struct timeval *last_time)
 		hum->res->forks[0] = 1;
 		pthread_mutex_unlock(hum->res->mfork);
 		hum->flag ++;
-		if (check_dead_or_ate(hum, last_time, grabfork) == NULL)
-			return (fail);
+		if (check_dead_or_ate(hum, last_time, e_grabfork) == NULL)
+			return (e_fail);
 	}
 	else
 		pthread_mutex_unlock(hum->res->mfork);
@@ -60,10 +60,10 @@ int	grab_fork_max(t_human *hum, struct timeval *last_time)
 		hum->res->forks[hum->name - 1] = 1;
 		pthread_mutex_unlock(hum->res->mfork + hum->name - 1);
 		hum->flag ++;
-		if (check_dead_or_ate(hum, last_time, grabfork) == NULL)
-			return (fail);
+		if (check_dead_or_ate(hum, last_time, e_grabfork) == NULL)
+			return (e_fail);
 	}
 	else
 		pthread_mutex_unlock(hum->res->mfork + hum->name - 1);
-	return (success);
+	return (e_success);
 }
